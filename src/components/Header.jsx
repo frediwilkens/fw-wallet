@@ -28,7 +28,7 @@ class Header extends React.Component {
 
 Header.propTypes = {
   showUser: PropTypes.string.isRequired,
-  showTotal: PropTypes.number.isRequired,
+  showTotal: PropTypes.string.isRequired,
   emailField: PropTypes.string.isRequired,
   totalField: PropTypes.string.isRequired,
   headerCurrencyField: PropTypes.string.isRequired,

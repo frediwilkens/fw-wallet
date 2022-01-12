@@ -155,11 +155,11 @@ const mapDispatchToProps = (dispatch) => ({
 Wallet.propTypes = {
   email: PropTypes.string.isRequired,
   expenseDispatch: PropTypes.func.isRequired,
-  total: PropTypes.number,
+  total: PropTypes.string,
 };
 
 Wallet.defaultProps = {
-  total: 0,
+  total: '0',
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Wallet);

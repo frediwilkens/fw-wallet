@@ -4,7 +4,7 @@ import { NEW_EXPENSE } from '../actions';
 export const INITIAL_STATE = {
   currencies: [],
   expenses: [],
-  total: 0,
+  total: '0',
 };
 
 export const wallet = (state = INITIAL_STATE, action) => {
@@ -20,10 +20,10 @@ export const wallet = (state = INITIAL_STATE, action) => {
           exchangeRates: action.payload.rates,
         },
       ],
-      total: state.total + parseFloat((
+      total: (parseFloat(state.total) + (
         parseFloat(action.payload.expense.value)
         * parseFloat(action.payload.rates[action.payload.expense.currency].ask)
-      ).toFixed(2)),
+      )).toFixed(2).toString(),
     };
   default:
     return state;

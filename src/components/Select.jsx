@@ -22,7 +22,7 @@ class Select extends React.Component {
         >
           { options.map((option, index) => (
             <option
-              key={ index }
+              key={ option }
               value={ option }
               className="wallet-input"
               data-testid={ testid[index] }
