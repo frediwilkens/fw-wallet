@@ -1,37 +1,138 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import Header from '../components/Header';
+import Input from '../components/Input';
+import Select from '../components/Select';
+import Button from '../components/Button';
+import { exchangeRates } from '../actions';
+import fetchAPI from '../services/api';
+
+const INITIAL_STATE = {
+  value: '',
+  description: '',
+  currency: '',
+  currencies: [],
+  method: '',
+  methods: ['Dinheiro', 'Cartão de crédito', 'Cartão de débito'],
+  tag: '',
+  tags: ['Alimentação', 'Lazer', 'Trabalho', 'Transporte', 'Saúde'],
+};
 
 class Wallet extends React.Component {
   constructor() {
     super();
 
-    this.state = {
-      total: '0',
+    this.state = INITIAL_STATE;
+  }
+
+  componentDidMount() {
+    this.getCurrencies();
+  }
+
+  getCurrencies = async () => {
+    const filter = 'USDT';
+    const rates = await fetchAPI();
+    const currencies = Object.keys(rates)
+      .filter((currency) => currency !== filter);
+
+    this.setState({
+      currencies,
+    });
+  }
+
+  handleChange = ({ target }) => {
+    const { name, value } = target;
+    this.setState({ [name]: value });
+  }
+
+  addExpense = () => {
+    const { expenseDispatch } = this.props;
+    const { value, description, currency, method, tag } = this.state;
+    const formData = {
+      value,
+      description,
+      currency,
+      method,
+      tag,
     };
+    expenseDispatch(formData);
+
+    this.setState({
+      value: '',
+      description: '',
+      currency: 'USD',
+      method: 'Dinheiro',
+      tag: 'Alimentação',
+    });
   }
 
   render() {
-    const { email } = this.props;
-    const { total } = this.state;
+    const { email, total } = this.props;
+    const { value,
+      description, currency,
+      currencies, method, methods,
+      tag, tags } = this.state;
     return (
       <div>
-        <header>
-          <h2 data-testid="email-field">
-            { email }
-          </h2>
-          <h2>
-            Total:
-            {' '}
-            <span data-testid="total-field">
-              { total }
-            </span>
-            {' '}
-            <span data-testid="header-currency-field">
-              BRL
-            </span>
-          </h2>
-        </header>
+        <Header
+          showUser={ email }
+          showTotal={ total }
+          emailField="email-field"
+          totalField="total-field"
+          headerCurrencyField="header-currency-field"
+        />
+
+        <form className="wallet-box">
+          <Input
+            labelText="Value:"
+            id="value-input"
+            type="text"
+            name="value"
+            placeholder="Value"
+            value={ value }
+            onChange={ this.handleChange }
+            nameClass="wallet-input"
+          />
+          <Input
+            labelText="Description:"
+            id="description-input"
+            type="text"
+            name="description"
+            placeholder="Description"
+            value={ description }
+            onChange={ this.handleChange }
+            nameClass="wallet-input"
+          />
+          <Select
+            id="currency-input"
+            labelName="Currency:"
+            onChange={ this.handleChange }
+            value={ currency }
+            options={ currencies }
+            name="currency"
+          />
+          <Select
+            id="method-input"
+            labelName="Method:"
+            onChange={ this.handleChange }
+            value={ method }
+            options={ methods }
+            name="method"
+          />
+          <Select
+            id="tag-input"
+            labelName="Tag:"
+            onChange={ this.handleChange }
+            value={ tag }
+            options={ tags }
+            name="tag"
+          />
+          <Button
+            labelName="Adicionar despesa"
+            onClick={ this.addExpense }
+          />
+        </form>
       </div>
     );
   }
@@ -39,10 +140,17 @@ class Wallet extends React.Component {
 
 const mapStateToProps = (state) => ({
   email: state.user.email,
+  total: state.wallet.total,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  expenseDispatch: (value) => dispatch(exchangeRates(value)),
 });
 
 Wallet.propTypes = {
   email: PropTypes.string.isRequired,
+  expenseDispatch: PropTypes.func.isRequired,
+  total: PropTypes.number.isRequired,
 };
 
-export default connect(mapStateToProps, null)(Wallet);
+export default connect(mapStateToProps, mapDispatchToProps)(Wallet);
