@@ -6,7 +6,7 @@ class Select extends React.Component {
     const {
       id, labelName,
       onChange, name,
-      value, options } = this.props;
+      value, options, testid } = this.props;
 
     return (
       <label htmlFor={ id }>
@@ -25,6 +25,7 @@ class Select extends React.Component {
               key={ index }
               value={ option }
               className="wallet-input"
+              data-testid={ testid[index] }
             >
               { option }
             </option>
@@ -41,7 +42,12 @@ Select.propTypes = {
   value: PropTypes.string.isRequired,
   labelName: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
+  testid: PropTypes.arrayOf(PropTypes.string),
   options: PropTypes.arrayOf(PropTypes.string).isRequired,
+};
+
+Select.defaultProps = {
+  testid: [],
 };
 
 export default Select;

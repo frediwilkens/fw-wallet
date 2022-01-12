@@ -8,14 +8,16 @@ import Button from '../components/Button';
 import { exchangeRates } from '../actions';
 import fetchAPI from '../services/api';
 
+const food = 'Alimentação';
+
 const INITIAL_STATE = {
   value: '',
   description: '',
-  currency: '',
+  currency: 'USD',
   currencies: [],
-  method: '',
+  method: 'Dinheiro',
   methods: ['Dinheiro', 'Cartão de crédito', 'Cartão de débito'],
-  tag: '',
+  tag: food,
   tags: ['Alimentação', 'Lazer', 'Trabalho', 'Transporte', 'Saúde'],
 };
 
@@ -63,7 +65,7 @@ class Wallet extends React.Component {
       description: '',
       currency: 'USD',
       method: 'Dinheiro',
-      tag: 'Alimentação',
+      tag: food,
     });
   }
 
@@ -106,11 +108,12 @@ class Wallet extends React.Component {
           />
           <Select
             id="currency-input"
-            labelName="Currency:"
+            labelName="Moeda:"
             onChange={ this.handleChange }
             value={ currency }
             options={ currencies }
             name="currency"
+            testid={ currencies }
           />
           <Select
             id="method-input"
@@ -150,7 +153,11 @@ const mapDispatchToProps = (dispatch) => ({
 Wallet.propTypes = {
   email: PropTypes.string.isRequired,
   expenseDispatch: PropTypes.func.isRequired,
-  total: PropTypes.number.isRequired,
+  total: PropTypes.number,
+};
+
+Wallet.defaultProps = {
+  total: 0,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Wallet);
