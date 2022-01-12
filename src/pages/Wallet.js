@@ -7,6 +7,7 @@ import Select from '../components/Select';
 import Button from '../components/Button';
 import { exchangeRates } from '../actions';
 import fetchAPI from '../services/api';
+import Table from '../components/Table';
 
 const food = 'Alimentação';
 
@@ -136,6 +137,7 @@ class Wallet extends React.Component {
             onClick={ this.addExpense }
           />
         </form>
+        <Table />
       </div>
     );
   }
