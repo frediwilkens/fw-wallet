@@ -96,14 +96,36 @@ label {
 }
 
 .table {
-  margin-top: 25px;
   background-color: gray;
   width: 100%;
 }
 
 tr {
   border: 1px solid #45484b;
-  display: flex;
-  justify-content: space-between;
   font-size: x-large;
+}
+
+th {
+  height: 75px;
+}
+
+th, td {
+  border: 1px #36393b solid;
+  width: 11%;
+  text-align: center;
+}
+
+td {
+  height: 50px;
+  font-size: large;
+}
+
+.delete-btn {
+  height: 40px;
+  width: 70px;
+  background-color: #36393b;
+  color: white;
+  border-radius: 20px;
+  border: 2px solid #45484b;
+  font-size: medium;
 }

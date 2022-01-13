@@ -3,6 +3,7 @@ import fetchAPI from '../services/api';
 
 export const USER_LOGIN = 'USER_LOGIN';
 export const NEW_EXPENSE = 'NEW_EXPENSE';
+export const DELETE_EXPENSE = 'DELETE_EXPENSE';
 
 export const userLogin = (email) => ({
   type: USER_LOGIN,
@@ -14,6 +15,14 @@ export const newExpense = (state, rates) => ({
   payload: {
     expense: { ...state },
     rates,
+  },
+});
+
+export const deleteExpense = (neoExpe, subtracted) => ({
+  type: DELETE_EXPENSE,
+  payload: {
+    neoExpe,
+    subtracted,
   },
 });
 
