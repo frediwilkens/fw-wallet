@@ -30,7 +30,7 @@ class Login extends React.Component {
     const { history, userDispatch } = this.props;
     const { email } = this.state;
     userDispatch(email);
-    history.push('/carteira');
+    history.push('/wallet');
   }
 
   render() {
@@ -65,7 +65,7 @@ class Login extends React.Component {
             onClick={ this.dispatchAndPush }
             id="login-btn"
           >
-            Entrar
+            Sign in
           </button>
 
         </fieldset>

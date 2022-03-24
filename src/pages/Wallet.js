@@ -9,17 +9,17 @@ import { exchangeRates } from '../actions';
 import fetchAPI from '../services/api';
 import Table from '../components/Table';
 
-const food = 'Alimentação';
+const food = 'Food';
 
 const INITIAL_STATE = {
   value: '',
   description: '',
   currency: 'USD',
   currencies: [],
-  method: 'Dinheiro',
-  methods: ['Dinheiro', 'Cartão de crédito', 'Cartão de débito'],
+  method: 'Cash',
+  methods: ['Cash', 'Credit Card', 'Debit Card'],
   tag: food,
-  tags: ['Alimentação', 'Lazer', 'Trabalho', 'Transporte', 'Saúde'],
+  tags: ['Food', 'Fun', 'Work', 'Transport', 'Health'],
 };
 
 class Wallet extends React.Component {
@@ -65,7 +65,7 @@ class Wallet extends React.Component {
       value: '',
       description: '',
       currency: 'USD',
-      method: 'Dinheiro',
+      method: 'Cash',
       tag: food,
     });
   }
