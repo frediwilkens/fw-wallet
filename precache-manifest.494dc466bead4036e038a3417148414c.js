@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "11a01fbf2df05bee9fdc9485a4d1f3b3",
+    "revision": "71802cd7b224eacdc8515dd643b442c0",
     "url": "/fw-wallet/index.html"
   },
   {
-    "revision": "f87d57a635f3ea2f1ef4",
+    "revision": "4a6a2c1d25486d5c6ea8",
     "url": "/fw-wallet/static/css/main.e1c67efd.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/fw-wallet/static/js/2.097a090c.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "f87d57a635f3ea2f1ef4",
-    "url": "/fw-wallet/static/js/main.6638dd14.chunk.js"
+    "revision": "4a6a2c1d25486d5c6ea8",
+    "url": "/fw-wallet/static/js/main.18e9aa2a.chunk.js"
   },
   {
     "revision": "048193dc327b8892c544",
