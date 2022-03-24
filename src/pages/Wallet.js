@@ -108,7 +108,7 @@ class Wallet extends React.Component {
           />
           <Select
             id="currency-input"
-            labelName="Moeda:"
+            labelName="Currency:"
             onChange={ this.handleChange }
             value={ currency }
             options={ currencies }
