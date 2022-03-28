@@ -13,4 +13,4 @@
 - CSS
 
 ## Try yourself
-- If you want to try click [HERE](https://frediwilkens.github.io/fw-wallet)!
+- If you want to try it click [HERE](https://frediwilkens.github.io/fw-wallet)!
